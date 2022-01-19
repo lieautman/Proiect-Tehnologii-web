@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./TST.css";
+import React, { useEffect, useState } from 'react';
+import './TST.css';
 //iau starea redux
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import * as actions from "./../../../States/Actions";
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import * as actions from './../../../States/Actions';
 
 //preiau date din stare
 const idSelector = (state) => state.main.id;
@@ -41,25 +41,25 @@ function USER_TST() {
   //functie de desenare comenzi pt adaugare bug
   function desenareComenziProiect(proiect) {
     return (
-      <div key={proiect.id} id="proiectTST">
+      <div key={proiect.id} id='proiectTST'>
         Project name: {proiect.nume}
         <br></br> Link:{proiect.linkRepo}
         <input
-          className="btnTST"
-          type="button"
-          value="Add bug"
+          className='btnTST'
+          type='button'
+          value='Add bug'
           onClick={() => adaugaBug(proiect)}
         ></input>
         <input
-          className="btnTST"
-          type="button"
-          value="View bugs"
+          className='btnTST'
+          type='button'
+          value='View bugs'
           onClick={() => afisazaBug(proiect)}
         ></input>
         <input
-          className="btnTST"
-          type="button"
-          value="View personal bugs"
+          className='btnTST'
+          type='button'
+          value='View personal bugs'
           onClick={() => afisazaPersonalBug(proiect)}
         ></input>
       </div>
@@ -67,12 +67,12 @@ function USER_TST() {
   }
 
   //variabile locale
-  const [severitateBug, setSeveritateBug] = useState("");
-  const [prioritateBug, setPrioritateBug] = useState("");
-  const [descriereBug, setDescriereBug] = useState("");
-  const [severitateBugUpdate, setSeveritateBugUpdate] = useState("");
-  const [prioritateBugUpdate, setPrioritateBugUpdate] = useState("");
-  const [descriereBugUpdate, setDescriereBugUpdate] = useState("");
+  const [severitateBug, setSeveritateBug] = useState('');
+  const [prioritateBug, setPrioritateBug] = useState('');
+  const [descriereBug, setDescriereBug] = useState('');
+  const [severitateBugUpdate, setSeveritateBugUpdate] = useState('');
+  const [prioritateBugUpdate, setPrioritateBugUpdate] = useState('');
+  const [descriereBugUpdate, setDescriereBugUpdate] = useState('');
 
   function createBug() {
     dispatch(
@@ -99,7 +99,7 @@ function USER_TST() {
       return null;
     } else {
       return (
-        <form id="editeazaBugForm">
+        <form id='editeazaBugForm'>
           <h4>
             Edit the bug with severity: {bug.severity}, priority: {bug.priority}
             , description: {bug.description} and the link: {bug.link}
@@ -107,27 +107,27 @@ function USER_TST() {
 
           <br></br>
           <input
-            className="inputUpdate"
-            type="text"
-            placeholder="Add new severity"
+            className='inputUpdate'
+            type='text'
+            placeholder='Add new severity'
             onChange={(evt) => setSeveritateBugUpdate(evt.target.value)}
           />
           <input
-            className="inputUpdate"
-            type="text"
-            placeholder="Add new priority"
+            className='inputUpdate'
+            type='text'
+            placeholder='Add new priority'
             onChange={(evt) => setPrioritateBugUpdate(evt.target.value)}
           />
           <input
-            className="inputUpdate"
-            type="text"
-            placeholder="Add new description"
+            className='inputUpdate'
+            type='text'
+            placeholder='Add new description'
             onChange={(evt) => setDescriereBugUpdate(evt.target.value)}
           />
           <input
-            id="btnUpdateBug"
-            type="button"
-            value="Update"
+            id='btnUpdateBug'
+            type='button'
+            value='Update'
             onClick={() => updateBug(bug)}
           ></input>
         </form>
@@ -141,6 +141,7 @@ function USER_TST() {
         severitateBugUpdate,
         prioritateBugUpdate,
         descriereBugUpdate,
+        bug.link,
         id,
         bug.idOfProject,
         type,
@@ -163,35 +164,35 @@ function USER_TST() {
       return null;
     } else {
       return (
-        <form id="formAdauga">
+        <form id='formAdauga'>
           <h4>
-            Add bug at the project: {proiect.nume} and the link:{" "}
+            Add bug at the project: {proiect.nume} and the link:{' '}
             {proiect.linkRepo}
           </h4>
           <br></br>
           <input
-            className="inputAdauga"
-            type="text"
-            placeholder="Add bug severity"
+            className='inputAdauga'
+            type='text'
+            placeholder='Add bug severity'
             onChange={(evt) => setSeveritateBug(evt.target.value)}
           />
           <input
-            className="inputAdauga"
-            type="text"
-            placeholder="Add bug priority"
+            className='inputAdauga'
+            type='text'
+            placeholder='Add bug priority'
             onChange={(evt) => setPrioritateBug(evt.target.value)}
           />
           <input
-            className="inputAdauga"
-            type="text"
-            placeholder="Add bug description"
+            className='inputAdauga'
+            type='text'
+            placeholder='Add bug description'
             onChange={(evt) => setDescriereBug(evt.target.value)}
           />
           <input
-            type="button"
-            value="Add bug"
+            type='button'
+            value='Add bug'
             onClick={createBug}
-            id="btnAdaugaBug"
+            id='btnAdaugaBug'
           ></input>
           {createError}
         </form>
@@ -211,7 +212,7 @@ function USER_TST() {
       return null;
     } else {
       return (
-        <form id="listaBugProiect">
+        <form id='listaBugProiect'>
           <h3>List of bugs for the project {proiect.nume}:</h3>
           <div>{afisareListaBuguri(proiect)}</div>
         </form>
@@ -226,7 +227,7 @@ function USER_TST() {
   function desenareDisplayBug(proiect, bug) {
     if (bug.idOfProject === proiect.id)
       return (
-        <div key={bug.id} id="proprietatiBug">
+        <div key={bug.id} id='proprietatiBug'>
           Bug severity: {bug.severity}
           <br></br> Bug priority: {bug.priority}
           <br></br>
@@ -251,8 +252,8 @@ function USER_TST() {
       return null;
     } else {
       return (
-        <form id="listaBugsPersonale">
-          <h4>List of personal bugs for the project: {proiect.nume}, este:</h4>
+        <form id='listaBugsPersonale'>
+          <h4>List of personal bugs for the project {proiect.nume} is:</h4>
           {afisareListaPersonalBuguri(proiect)}
         </form>
       );
@@ -266,7 +267,7 @@ function USER_TST() {
   function desenareDisplayPersonalBug(proiect, bug) {
     if (bug.idOfProject === proiect.id)
       return (
-        <div key={bug.id} id="bugPersonal">
+        <div key={bug.id} id='bugPersonal'>
           <div>
             Bug severity: {bug.severity}
             <br></br> Bug priority: {bug.priority}
@@ -274,15 +275,15 @@ function USER_TST() {
             <br></br> Link: {bug.link}
           </div>
           <input
-            id="btnEditeaza"
-            type="button"
-            value="Edit"
+            id='btnEditeaza'
+            type='button'
+            value='Edit'
             onClick={() => editBug(bug)}
           ></input>
           <input
-            id="btnSterge"
-            type="button"
-            value="Delete"
+            id='btnSterge'
+            type='button'
+            value='Delete'
             onClick={() => deleteBug(bug.id)}
           ></input>
         </div>
@@ -292,8 +293,10 @@ function USER_TST() {
 
   return (
     <>
-      <div>
-        <h2>List of all projects:</h2>
+      {/* min-height 1000px */}
+      <div id='listaProiecteDiv'>
+        {/* margin-top 50px */}
+        <h2 id='listaproiecteHeader'>List of all projects:</h2>
         {afisareListaProiecte()}
       </div>
       <div>{showAdaugaBug(proiectPentruBug)}</div>

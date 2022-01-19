@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import store from "./LoginStore";
-import "./login.css";
+import React, { useState } from 'react';
+import store from './LoginStore';
+import './login.css';
 
 //iau starea redux
-import { useDispatch } from "react-redux";
-import * as actions from "../../States/Actions";
+import { useDispatch } from 'react-redux';
+import * as actions from '../../States/Actions';
 
 export default function Login() {
   const [username, setUsername] = useState(null);
@@ -12,11 +12,11 @@ export default function Login() {
 
   //var din redux
   const dispatch = useDispatch();
-  const [eroare, setEroare] = useState("");
+  const [eroare, setEroare] = useState('');
   //la logare corecta, updatam starea aplicatiei
   const login = () => {
     store.Login(username, password);
-    store.emitter.addListener("LOGIN_SUCCESS", () => {
+    store.emitter.addListener('LOGIN_SUCCESS', () => {
       //implementare token
       const id = store.data.id;
       const username = store.data.username;
@@ -25,7 +25,7 @@ export default function Login() {
       //setam starea globala la main
       dispatch(actions.mainActions.go_main(id, username, type, token));
     });
-    store.emitter.addListener("LOGIN_ERROR", (err) => {
+    store.emitter.addListener('LOGIN_ERROR', (err) => {
       setEroare(err.message);
     });
   };
@@ -37,7 +37,7 @@ export default function Login() {
   //pt form
   const isEnterPressed = (evt) => {
     const key = evt.key;
-    if (key === "Enter") {
+    if (key === 'Enter') {
       login();
     }
   };
@@ -45,38 +45,38 @@ export default function Login() {
   return (
     <div>
       <h1>Login to BugTracking</h1>
-      <form id="loginForm">
-        <label id="labelUsername">Username</label>
+      <form id='loginForm'>
+        <label id='labelUsername'>Username</label>
         <input
-          class="credentials"
-          type="text"
-          placeholder="Enter Username"
+          className='credentials'
+          type='text'
+          placeholder='Enter Username'
           onChange={(evt) => setUsername(evt.target.value)}
           onKeyPress={(evt) => isEnterPressed(evt)}
         />
 
-        <label id="labelPassword">Password</label>
+        <label id='labelPassword'>Password</label>
         <input
-          class="credentials"
-          type="password"
-          placeholder="Enter password"
+          className='credentials'
+          type='password'
+          placeholder='Enter password'
           onChange={(evt) => setPassword(evt.target.value)}
           onKeyPress={(evt) => isEnterPressed(evt)}
         />
 
         <input
-          class="button"
-          id="btnLogin"
-          type="button"
-          value="Login"
+          className='button'
+          id='btnLogin'
+          type='button'
+          value='Login'
           onClick={login}
         ></input>
-        <label id="labelAccount">Don't have an account?</label>
+        <label id='labelAccount'>Don't have an account?</label>
         <input
-          class="button"
-          id="btnSignUp"
-          type="button"
-          value="Sign Up"
+          className='button'
+          id='btnSignUp'
+          type='button'
+          value='Sign Up'
           onClick={signup}
         ></input>
       </form>

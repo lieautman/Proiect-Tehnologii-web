@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import store from "./SignupStore";
-import "./SignUp.css";
+import React, { useState } from 'react';
+import store from './SignupStore';
+import './SignUp.css';
 //iau starea redux
-import { useDispatch } from "react-redux";
-import * as actions from "./../../States/Actions";
+import { useDispatch } from 'react-redux';
+import * as actions from './../../States/Actions';
 
 export default function SignUp() {
   //var locale pentru parametrii
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
-  const [type, setType] = useState("TST");
+  const [type, setType] = useState('TST');
   const [email, setEmail] = useState(null);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
   //var din redux
   const dispatch = useDispatch();
-  const [eroare, setEroare] = useState("");
+  const [eroare, setEroare] = useState('');
   //functie de signup
   const signup = () => {
     store.Signup(firstName, lastName, type, email, username, password);
-    store.emitter.addListener("SIGNUP_SUCCESS", () => {
+    store.emitter.addListener('SIGNUP_SUCCESS', () => {
       //setam starea globala la login
       dispatch(actions.mainActions.go_login());
     });
-    store.emitter.addListener("SIGNUP_ERROR", (err) => {
+    store.emitter.addListener('SIGNUP_ERROR', (err) => {
       setEroare(err.message);
     });
   };
@@ -36,7 +36,7 @@ export default function SignUp() {
   //pt form
   const isEnterPressed = (evt) => {
     const key = evt.key;
-    if (key === "Enter") {
+    if (key === 'Enter') {
       signup();
     }
   };
@@ -46,68 +46,68 @@ export default function SignUp() {
       <form>
         <h1>Sign Up</h1>
 
-        <div id="formSignUp">
-          <label class="labelSignUP">First name</label>
+        <div id='formSignUp'>
+          <label className='labelSignUP'>First name</label>
           <input
-            type="text"
-            className="form-control"
-            placeholder="First name"
+            type='text'
+            className='form-control'
+            placeholder='First name'
             onChange={(evt) => setFirstName(evt.target.value)}
             onKeyPress={(evt) => isEnterPressed(evt)}
           />
-          <label class="labelSignUP">Last name</label>
+          <label className='labelSignUP'>Last name</label>
           <input
-            type="text"
-            className="form-control"
-            placeholder="Last name"
+            type='text'
+            className='form-control'
+            placeholder='Last name'
             onChange={(evt) => setLastName(evt.target.value)}
             onKeyPress={(evt) => isEnterPressed(evt)}
           />
-          <label class="labelSignUP">Type</label>
+          <label className='labelSignUP'>Type</label>
           <select
-            className="form-control"
+            className='form-control'
             onChange={(evt) => setType(evt.target.value)}
           >
-            <option value="TST">Tester</option>
-            <option value="MP">Project member</option>
+            <option value='TST'>Tester</option>
+            <option value='MP'>Project member</option>
           </select>
-          <label class="labelSignUP">Email address</label>
+          <label className='labelSignUP'>Email address</label>
           <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
+            type='email'
+            className='form-control'
+            placeholder='Enter email'
             onChange={(evt) => setEmail(evt.target.value)}
             onKeyPress={(evt) => isEnterPressed(evt)}
           />
-          <label class="labelSignUP">Username</label>
+          <label className='labelSignUP'>Username</label>
           <input
-            type="text"
-            className="form-control"
-            placeholder="Enter Username"
+            type='text'
+            className='form-control'
+            placeholder='Enter Username'
             onChange={(evt) => setUsername(evt.target.value)}
             onKeyPress={(evt) => isEnterPressed(evt)}
           />
-          <label class="labelSignUP">Password</label>
+          <label className='labelSignUP'>Password</label>
           <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
+            type='password'
+            className='form-control'
+            placeholder='Enter password'
             onChange={(evt) => setPassword(evt.target.value)}
             onKeyPress={(evt) => isEnterPressed(evt)}
           />
           <input
-            type="button"
-            value="Sign Up"
+            type='button'
+            value='Sign Up'
             onClick={signup}
-            class="button"
-            id="buttonSignUp"
+            className='button'
+            id='buttonSignUp'
           ></input>
           <input
-            type="button"
-            value="Back to login"
+            type='button'
+            value='Back to login'
             onClick={back}
-            class="button"
-            id="btnBack"
+            className='button'
+            id='btnBack'
           ></input>
         </div>
       </form>
