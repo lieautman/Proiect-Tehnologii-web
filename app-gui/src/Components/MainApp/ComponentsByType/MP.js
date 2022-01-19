@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./MP.css";
+import React, { useEffect, useState } from 'react';
+import './MP.css';
 //iau starea redux
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import * as actions from "./../../../States/Actions";
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import * as actions from './../../../States/Actions';
 
 //preiau date din stare
 const idSelector = (state) => state.main.id;
@@ -28,13 +28,13 @@ function USER_MP() {
   const bugList = useSelector(bugListSelector, shallowEqual);
 
   //salvam local valorile
-  const [linkRepo, setLinkRepo] = useState("");
-  const [nume, setNume] = useState("");
-  const [linkRepoUpdate, setLinkRepoUpdate] = useState("");
-  const [numeUpdate, setNumeUpdate] = useState("");
+  const [linkRepo, setLinkRepo] = useState('');
+  const [nume, setNume] = useState('');
+  const [linkRepoUpdate, setLinkRepoUpdate] = useState('');
+  const [numeUpdate, setNumeUpdate] = useState('');
 
   //var pentru rezolvare bug
-  const [linkBugSolve, setLinkBugSolve] = useState("");
+  const [linkBugSolve, setLinkBugSolve] = useState('');
 
   //reducer pt proiecte
   useEffect(() => {
@@ -46,7 +46,7 @@ function USER_MP() {
   function afisareListaProiecte() {
     if (projectList !== undefined)
       return projectList.map((e) => (
-        <div key={e.id} id="listaToateProiectele">
+        <div key={e.id} id='listaToateProiectele'>
           Project name: {e.nume}; Link: {e.linkRepo}
         </div>
       ));
@@ -70,24 +70,24 @@ function USER_MP() {
       return null;
     } else {
       return (
-        <form id="formularEditareMP">
+        <form id='formularEditareMP'>
           Edit project: {proiect.nume} at the link: {proiect.linkRepo}.<br></br>
           <input
-            class="inputEdit"
-            type="text"
-            placeholder="Link"
+            className='inputEdit'
+            type='text'
+            placeholder='Link'
             onChange={(evt) => setLinkRepoUpdate(evt.target.value)}
           />
           <input
-            class="inputEdit"
-            type="text"
-            placeholder="Name"
+            className='inputEdit'
+            type='text'
+            placeholder='Name'
             onChange={(evt) => setNumeUpdate(evt.target.value)}
           />
           <input
-            id="btnEditeazaProiect"
-            type="button"
-            value="Modify"
+            id='btnEditeazaProiect'
+            type='button'
+            value='Modify'
             onClick={() => updateProject(proiect.id)}
           ></input>
         </form>
@@ -116,26 +116,26 @@ function USER_MP() {
   //functie de creare obiect personal editabil si eliminabil
   function desenareObiectPersonal(proiect) {
     return (
-      <div key={proiect.id} id="listaProiectePersonale">
+      <div key={proiect.id} id='listaProiectePersonale'>
         <div>
           Project name: {proiect.nume}; Link: {proiect.linkRepo}
         </div>
         <input
-          class="btnListaMP"
-          type="button"
-          value="Edit"
+          className='btnListaMP'
+          type='button'
+          value='Edit'
           onClick={() => editProject(proiect)}
         ></input>
         <input
-          class="btnListaMP"
-          type="button"
-          value="Delete"
+          className='btnListaMP'
+          type='button'
+          value='Delete'
           onClick={() => deleteProject(proiect.id)}
         ></input>
         <input
-          class="btnListaMP"
-          type="button"
-          value="Display bug list"
+          className='btnListaMP'
+          type='button'
+          value='Display bug list'
           onClick={() => displayBugs(proiect)}
         ></input>
       </div>
@@ -160,7 +160,7 @@ function USER_MP() {
       return null;
     } else {
       return (
-        <form id="formBugs">
+        <form id='formBugs'>
           List of bugs for the project: {proiect.nume}
           <br></br>
           Github link: {proiect.linkRepo} {afisareListaBug(proiect)}
@@ -178,23 +178,23 @@ function USER_MP() {
   function afisareBug(proiect, bug) {
     if (proiect.id === bug.idOfProject) {
       return (
-        <div key={bug.id} id="listaBugs">
+        <div key={bug.id} id='listaBugs'>
           Severity: {bug.severity}
           <br></br>Priority: {bug.priority}
           <br></br>Description: {bug.description}
           <br></br>Link with the solution: {bug.link}
           <br></br>
           <input
-            id="linkRezolvareBug"
-            type="text"
-            placeholder="Link"
+            id='linkRezolvareBug'
+            type='text'
+            placeholder='Link'
             onChange={(evt) => setLinkBugSolve(evt.target.value)}
           />
           <br></br>
           <input
-            id="btnRezolvaBug"
-            type="button"
-            value="Solve bug"
+            id='btnRezolvaBug'
+            type='button'
+            value='Solve bug'
             onClick={() => solveBug(bug)}
           ></input>
         </div>
@@ -221,28 +221,28 @@ function USER_MP() {
       </div>
       <div>{showEditScreen(proiectDeActualizat)}</div>
       <div>{showDisplayBug(proiectDisplayBugs)}</div>
-      <form id="formularMP">
+      <form id='formularMP'>
         <h3>Add a new project</h3>
         <div>
-          <label class="labelMPCreate">Link repository:</label>
+          <label className='labelMPCreate'>Link repository:</label>
           <input
-            id="linkRepoMPCreate"
-            type="text"
-            placeholder="Add link"
+            id='linkRepoMPCreate'
+            type='text'
+            placeholder='Add link'
             onChange={(evt) => setLinkRepo(evt.target.value)}
           />
-          <label class="labelMPCreate">Project name:</label>
+          <label className='labelMPCreate'>Project name:</label>
           <input
-            id="DenumireProiectMPCreate"
-            type="text"
-            placeholder="Add project name"
+            id='DenumireProiectMPCreate'
+            type='text'
+            placeholder='Add project name'
             onChange={(evt) => setNume(evt.target.value)}
           />
           <input
-            type="button"
-            value="Create"
+            type='button'
+            value='Create'
             onClick={createProject}
-            id="btnCreateProject"
+            id='btnCreateProject'
           ></input>
         </div>
       </form>
